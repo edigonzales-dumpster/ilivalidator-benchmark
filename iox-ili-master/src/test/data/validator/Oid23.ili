@@ -1,0 +1,80 @@
+INTERLIS 2.3;
+
+MODEL Oid23
+  AT "mailto:ce@eisenhutinformatik.ch" VERSION "2016-11-16" =
+	
+	TOPIC Topic=
+	
+		STRUCTURE StructA =
+		   attrA1 : TEXT*10;
+		END StructA;
+
+		CLASS ClassB =
+		   attrB1 : TEXT*10;
+		   attrB2 : BAG {0..*} OF StructA;
+		END ClassB;
+
+		CLASS ClassC =
+		   attrC1 : TEXT*10;
+		END ClassC;
+
+		CLASS ClassD =
+		   attrD1 : TEXT*10;
+		END ClassD;
+		
+		ASSOCIATION bc1 =
+		  b1 -- {0..1} ClassB;
+		  c1 -- {0..*} ClassC;
+		END bc1;
+
+		ASSOCIATION bc2 =
+		  b2 -- {0..*} ClassB;
+		  c2 -- {0..*} ClassC;
+		END bc2;
+		
+		ASSOCIATION bc3 (OID) =
+		  b3 -- {0..*} ClassB;
+		  c3 -- {0..*} ClassC;
+		END bc3;
+
+		ASSOCIATION bc4 =
+			OID AS INTERLIS.UUIDOID;
+		  b4 -- {0..*} ClassB;
+		  c4 -- {0..*} ClassC;
+		END bc4;
+
+		ASSOCIATION bcd5 =
+		  b5 -- {0..*} ClassB;
+		  c5 -- {0..*} ClassC;
+		  d5 -- {0..*} ClassD;
+		END bcd5;
+		
+	END Topic;
+	
+	TOPIC Topic2=
+		CLASS ClassB =
+		   attrB1 : TEXT*10;
+		END ClassB;
+	END Topic2;
+
+	TOPIC Topic3=
+		DOMAIN 
+		TextOid = OID TEXT*34;
+		CLASS ClassA =
+		   TextID : OID TEXT*34; 
+		END ClassA;
+
+		CLASS ClassB3 =
+		   OID AS TextOid;
+		END ClassB3;
+
+		CLASS ClassC3 =
+		   attrC : INTERLIS.STANDARDOID;
+		END ClassC3;
+
+		CLASS ClassD3 =
+		   OID AS INTERLIS.STANDARDOID;
+		END ClassD3;
+	END Topic3;
+	
+END Oid23.

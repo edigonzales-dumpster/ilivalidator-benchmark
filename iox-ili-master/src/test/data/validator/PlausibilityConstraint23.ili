@@ -1,0 +1,20 @@
+INTERLIS 2.3;
+
+MODEL PlausibilityConstraint23
+  AT "mailto:ce@eisenhutinformatik.ch" VERSION "2016-11-09" =
+	TOPIC Topic=
+		CLASS ClassA =
+			attr1 : 0..10;
+			attr2 : 0..10;
+			CONSTRAINT >= 60%
+			attr1 >= attr2;
+		END ClassA;
+		
+		CLASS ClassB =
+			attr1 : 0..10;
+			attr2 : 0..10;
+			CONSTRAINT <= 60%
+			attr1 >= attr2;
+		END ClassB;
+	END Topic;
+END PlausibilityConstraint23.

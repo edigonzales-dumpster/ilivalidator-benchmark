@@ -1,0 +1,523 @@
+ideas/open issues
+----------------------------
+- add xml validation
+- add Xtf23Reader
+
+LATEST
+-----------------------------
+- Validator: Overlaying AREA not detected (ilivalidator#263)
+- add standard wkb support (#88)
+- MultiSurface / Unexpected WKB type 3 (ili2db#358)
+- ItfReader2/ignorePolygonBuildingErrors disables all errors from polygon building
+- remove use of ObjectOutputStream.writeObject() (ili2db#354) 
+
+iox-ili 1.21.0 (2020-05-01)
+-----------------------------
+- Validator: Check Base64 input character (ilivalidator#246)
+- Validator: fix No object found with OID null (ilivalidator#249)
+- IoxIliReader.getMimeType() added
+- IoxUtility.getModelVersion() added
+- improve ili2c core/tool separation
+- ili2c-5.1.0
+
+iox-ili 1.20.18 (2020-04-01)
+-----------------------------
+- Validator: ArrayIndexOutOfBoundsException with n-ary association (ilivalidator#232)
+- Wkb2iox: support EMPTY geometries (ili2db#338)
+- Xtf24Reader: wrong xmlns for extended attributes (ilivalidator#235)
+- Xtf24Reader: fails to read STRUCTUREs defined at model level (ilivalidator#236)
+- Xtf24Reader: missing line number in messages (ilivalidator#237)
+- Xtf24Reader: fails to read ref of embedded assoc with attrs (ilivalidator#238)
+- ili2c-5.0.7
+- ehibasics-1.3.0
+
+iox-ili 1.20.17 (2020-03-01)
+-----------------------------
+- Broken ili1 export (ili2db#326)
+- Validator: Unique constraints violation throws NPE (ili1) (ilivalidator#225)
+- Validator: pass objectPool to init of external object resolvers 
+
+iox-ili 1.20.16 (2020-01-31)
+-----------------------------
+- fix translation of enum-values if different translations in same transfer
+- fix MultiPolygonZ WKB parser (ili2db#325)
+
+iox-ili 1.20.15 (2019-12-23)
+-----------------------------
+- fix wrong polygons overlay (equal big arcs, but different direction of definition) (ilivalidator#202)
+- fix NPE when reference to main table is UNDEFINED in surface table (ili1) (ilivalidator#213)
+- get model from first basket, if no MODELS element in transferfile (ilivalidator#214)
+
+iox-ili 1.20.14 (2019-11-08)
+-----------------------------
+- sort coords in curve segment intersection result
+- calc arc/arc intersection with smaller radius arc as base (ili2db#308)
+- fix objectCount(UNDEFINED) (ilivalidator#203)
+
+iox-ili 1.20.13 (2019-09-06)
+-----------------------------
+- ItfReader2: swap topic filter logic
+
+iox-ili 1.20.12 (2019-08-23)
+-----------------------------
+- remove reference to javax.xml.bind.DatatypeConverter (because of removal in jdk11) 
+- Validator: show coord in XTF interscetion errormessage
+- Validator: fixed NPE: if structAttributeName element without a nested structure element
+- ItfReader2: support reading linetables in addition to polygons
+- ItfReader2: support topic filter
+- XtfReade24: fixed attr/role namespace
+- ReaderFactory: try CsvReader only if filename ends with .csv
+
+iox-ili 1.20.11 (2019-04-01)
+-----------------------------
+- XTF23/24Reader: support embedded association with attributes
+- Validator: Failed to detect wrong type in COORD/POLYLINE/SURFACE attr
+- Validator: factor interlis functions out of class validator
+- Validator: Constraints in association: compare objects not possible
+- ItfReader: invalid Ring lines Error - failed to build polygons
+- Validator: Xtflog contains not all messages
+- ReaderFactory: fixed unexpected namesapce http://www.interlis.ch/INTERLIS2.2 
+- Validator: optionally report inconsistent model version
+- Validator: localize validation messages
+- ItfReader: keep reading valid polygons from itf SURFACE if there are some invalid polygons
+- Validator: incomplete attribute path in error message 
+- XtfWriter: fixed writing of embedded associations
+- Validator: fixed INTERLIS.areAreas(...,UNDEFINED,...) evaluation
+
+iox-ili 1.20.10 (2018-12-09)
+-----------------------------
+- Validator: Error message addressed wrong basket
+- Validator: implement Math funcitons
+- Validator: fixed msg_(language) support
+- Validator: use keymsg in UNIQUE constraint
+- Validator: use model names from GUI
+- Validator: implement INTERLIS_ext functions
+- Validator: fixed CCW calculation if two half circles with horizontal straights
+- Validator: use attrPath in all validateAttribute messages
+- Validator: validate ALL OF enumerations
+- Validator: validate formatted type
+- Validator: validate UUID if used as BID
+- Validator: validate STANDRADOID
+- Validator: validate TEXT OID
+- Validator: validate basket element name
+- Validator: validate Contsraints in embedded associations
+- Validator: validate UNIQUE with forward references
+- Validator: support remote data/catalogue files
+- Validator: evaluate object paths with forward references
+- Validator: fix == with structures
+- Validator: report superflous attributes in embedded associations
+- Validator: validate that a BID is different from TIDs
+- xtf24: read/write ili:domains
+- switch config file reader to pure ini file syntax
+- improve temporary file size
+- ili2c-4.7.10
+
+iox-ili 1.20.9 (2018-09-07)
+-----------------------------
+- add PipelinePool to Settings so that custom functions can use it
+- Validator: fixed validation of number of reference properties  
+- Validator: disableRounding=true/false
+- Validator: validate URI values
+- Validator: validate TID/BID values
+- fix quoted parameter names read from TOML file
+- ItfReader: fixed wrong line number of first object in a table
+- ItfReader: fixed strange error message if surface line table without reference
+
+iox-ili 1.20.8 (2018-08-13)
+-----------------------------
+- removed "illegal value null for ObjTag" log messages
+- fixed Arc/Arc overlay detection if two halves of a circle
+
+iox-ili 1.20.7 (2018-07-05)
+-----------------------------
+- Validator: fixed validation of extended association/roledef
+- ItfReader2: catch/report line building errors
+- ili2c-4.7.9
+
+iox-ili 1.20.6 (2018-06-22)
+-----------------------------
+- Validator: clone IomObject to keep modifications (rounding) local
+
+iox-ili 1.20.5 (2018-06-22)
+-----------------------------
+- Validator xtf: include TIDs in AREA intersection error message
+- changed/improved overlay handling
+- CsvReader: fixed UTF-8 BOM handling
+- API: throw exception if one sets a IomObject attribute to null
+- Validator: allow to disable constraint validation
+- ehibasics-1.2.0
+- replaced javax.xml.ws.Holder by ch.ehi.basics.types.OutParam
+
+iox-ili 1.20.4 (2018-03-02)
+-----------------------------
+- Validator: improved performance
+- Validator: validate UNIQUE (LOCAL) against current object (and not all)
+- ItfReader2: show line tids in "no area-ref to polygon" error message
+
+iox-ili 1.20.2 (2018-02-08)
+-----------------------------
+- Validator: fix cut edge issue if small radius
+- Validator: fix cut edge issue if short arcs
+- ItfReader2: fix multiple area-refs to polygon issue
+- CsvReader: skip optional BOM in UTF-8 encoded file
+- Iox2wkb: fix conversion of surface with multiple polylines
+- Iox2wkb: fix segmentation of ARCs
+
+iox-ili 1.20.1 (2017-12-29)
+-----------------------------
+- Validator: improve UNIQUE validation performance 
+- Validator: fix cardinality validation of cross topic roles
+- Validator: fix NPE if primitive value instead of struct value
+- Iligml20Writer: fixed "max one reference value allowed"
+- added IoxStatistics
+- CsvReader: support character encoding
+- CsvWriter: support character encoding
+- CsvWriter: support defined attribute ordering
+- CsvReader: support query of attribute names
+- CsvReader: set line number in returned objects
+- CsvReader: ignore case of attribute names
+
+iox-ili 1.20.0 (2017-11-23)
+-----------------------------
+- implement MultiPoint wkb conversion
+- fix itf AREA building when a top horizontal straight line
+- keep objects ordered, so that reruns of tests give the same ordering of messages
+- fixed ItfReader2 if no main table obj for AREA/SURFACE attrs 
+
+iox-ili 1.19.8 (2017-10-20)
+-----------------------------
+- Xtf24Reader: fixed xmlns setup
+- Xtf24Reader: added models to StartTransferEvent
+- ItfReader2: enable AREAs with holes
+- added CSVWriter
+- CSVReader: fixed warn message unclosed reader
+- fixed ReaderFactory to return a Reader state before first event
+- fixed GetModels()
+- fixed coordinates calculation in ArcSegment+Iox2wkb if full circle
+- fixed polygon building if arcs overhang
+- added IoxIliReader to make generic clients aware of setModel()
+
+iox-ili 1.19.6 (2017-08-24)
+-----------------------------
+- fixed TranslateToOrigin: failed if dest attribute name equals source attrname
+- fixed TranslateToTranslation: failed if dest attribute name equals source attrname
+- added CsvReader
+- added addGenericReader
+
+iox-ili 1.19.5 (2017-08-12)
+-----------------------------
+- refactored arcpt calculation
+- added Xtf24Reader
+- added Iligml20Reader
+- validator: fixed UUID validation to accept also uppercase A-F
+- validator: new option to assume all objects are known to the validator
+
+iox-ili 1.19.4 (2017-06-27)
+-----------------------------
+- fixed wkb2iox "Unexpected WKB type 2" if MULTILINESTRING 
+
+iox-ili 1.19.3 (2017-06-22)
+-----------------------------
+- added ModelUtilities.buildEnumElementList() to get list of enum eles (not only names)
+
+iox-ili 1.19.1 (2017-06-19)
+-----------------------------
+- added iox2wkb/wkb2iox MultiLine support 
+
+iox-ili 1.19.0 (2017-06-17)
+-----------------------------
+- iox-ili: implement a GML reader
+- validator: fixed Missing coordinate in xtflog for errors detected by a custom function
+- validator: fixed INTERLIS.areAreas() not working in views
+- validator: fixed Check FORMAT INTERLIS.XMLDate
+- validator: fixed failed to validate uniqueness of BID
+- validator: fixed comparison of attributes with DomainRef as datatype 
+- validator: enable multi file validation
+- validator: enable to set a "multiplicity" default
+- ili2c-4.7.3
+
+iox-ili 1.18.1 (2017-04-20)
+-----------------------------
+- validator: fixed implementation of uniqueness constraint
+
+iox-ili 1.18.0 (2017-04-19)
+-----------------------------
+- iox-ili: fixed: missing custom functions should not report an error
+- validator: added: implement UNIQUE (LOCAL)
+- validator: added: implement UNIQUE WHERE expression
+
+iox-ili 1.17.0 (2017-04-10)
+-----------------------------
+- support ITF output if more than one ili1 model loaded
+- added filter to handle TRANSLATION OF
+- validator: fixed OID check if in line table mode
+
+iox-ili 1.16.0-master (2017-04-05)
+-----------------------------
+- validator: fixed: switching constraint check off
+- validator: fixed: role EXTERNAL handling in cardinality and reference
+- validator: optimized: constraint error messages
+
+iox-ili 1.16.0 (2017-03-26)
+-----------------------------
+- ItfReader: generate BID as $dataset.$topicname if datasetName known
+- validator: restrict customization of validation related to "multiplicity" 
+- validator: allow to disable AREA validation
+- validator: added general config to validate all geometry attributes with type="warning"
+
+iox-ili 1.15.0 (2017-03-17)
+-----------------------------
+- branch feature/validator1 merged
+
+iox-ili 1.14.0-feature/validator1 (2017-03-10)
+-----------------------------
+- validator: changed API of user defined functions
+- validator: added: validate plausibility constraints
+- validator: added: evaluate user defined functions
+- validator: added: enable user defined error messages
+- validator: added: get message in specific validation if configuration off
+- validator: fixed: unique constraint not checked
+- validator: fixed: custom functions with object collections
+- validator: fixed: missed errors in xtf log file
+- validator: fixed: evaluation of sub-enum constants
+- validator: improved/fixed topology validation
+- validator: optimized: validate external/additional constraint
+- validator: optimized: performance
+
+iox-ili 1.14.0-feature/validator1 (2017-02-10)
+-----------------------------
+- validator: optimized unique TID/OID check
+- validator: added functions len, lenM, trim, trimM, isEnumSubVal, inEnumRange, objectCount(ALL),
+			 objectCount(Role), elementCount, myClass, isOfClass, isSubClass, areArea
+- validator: added handling if function is not yet implemented
+- validator: added set constraints
+- validator: added infoLogs and traceLogs
+- validator: added additional constraints
+
+iox-ili 1.14.0-feature/validator1 (2017-01-13)
+-----------------------------
+- validator: optimized unique TID/OID check
+- validator: optimized performance
+- validator: added AREA/SURFACE topology validation
+- validator: added switch off existence constraints and mandatory constraints and return warning instead of an alert
+- validator: added switch off attribute cardinality and return warning instead of an alert
+- validator: added role handling if role is EXTERNAL
+
+iox-ili 1.14.0 (2016-12-30)
+-----------------------------
+- ili2c-4.6.0
+- Iligml20Writer: added
+- Iligml10Writer.defaultCrs added
+
+iox-ili 1.13.6 (2016-11-25)
+-----------------------------
+- ItfReader2: fixed NullPointerException if empty line in line table
+
+iox-ili 1.13.5 (2016-11-02)
+-----------------------------
+- XtfWriter: fixed BLACKBOX output
+- XtfReader: fixed BLACKBOX parser
+
+iox-ili-1.13.4-feature/validator1 (2016-12-29)
+----------------------------------------------
+- validator: fixed cardinality fault if ili1.0
+- validator: validate POLYLINE topology
+- validator: optimized object pool
+
+iox-ili-1.13.4-feature/validator1 (2016-12-21)
+----------------------------------------------
+- validator: fixed if cardinality is N, show "*" (UNBOUND) is error message 
+- validator: validate mandatory constraint in NOT, OR, AND, DEFINED, UNDEFINED
+- validator: validate mandatory constraint in ==, !=, <>, <, <=, >, >= of attribute and attribute path
+
+iox-ili-1.13.4-feature/validator1 (2016-12-12)
+----------------------------------------------
+- validator: fixed OID uniqueness per table in ITF
+
+iox-ili-1.13.4-feature/validator1 (2016-12-01)
+----------------------------------------------
+- validator: validate unique constraint
+- validator: validate cardinality in associations
+- validator: validate existence constraint
+- validator: validate reference type
+- validator: validate OID/TID uniqueness
+- validator: validate target class in associations
+
+iox-ili 1.13.4 (2016-09-17)
+-----------------------------
+- ItfWriter2: fixed missing objects in output
+- ItfReader2: fixed NullPointerException if OPTIONAL AREA with not geometries at all
+- list intersections only once
+- ItfReader2: fixed polygon building in SURFACE with common point between hole and shell that is not start/end point of a boundary line
+- ItfReader2: fixed polygon building in AREA with common point between boundaries that is not start/end point of a boundary line
+- ItfReader2: fixed technical tolerance of circle/circle intersection (affects polygon validation)
+- validator: handle IoxEvents with Itf linetables
+
+iox-ili 1.13.2 (2016-09-05)
+-----------------------------
+- validator: validate DATE, BOOLEAN, XMLDate, XMLDateTime, XMLTime, UUIDOID
+- validator: validate OID AS UUIDOID
+- validator: added global config section [PARAMTER] with entry validation="off"
+
+iox-ili 1.13.1 (2016-08-29)
+-----------------------------
+- object pool: check free memory over get/set calls of all pools
+
+iox-ili 1.13.0 (2016-08-11)
+-----------------------------
+- validator: fix mandatory check if attr type is a domain def
+- object pool: replaced jdbm by own implementation that really frees heap if objects written to file
+
+iox-ili 1.12.0 (2016-06-08)
+-----------------------------
+- added validator
+- ili2c-4.5.23
+
+iox-ili 1.11.5 (2016-04-07)
+-----------------------------
+- ehibasics-1.1.0
+- ili2c-4.5.22
+- free object pool resources used by AREA/SURFACE polygon builders
+
+iox-ili 1.11.4 (2016-02-04)
+-----------------------------
+- fixed WKT of CURVEPOLYGON
+- moved in iox to wkb conversion
+- fixed lost inner ring (if bbox calculated from cw and ccw line not exactly equal)
+- jts-1.14
+- add ignorePolygonBuildingErrors to ItfReader2
+- refactored ItfReader2 error reporting
+- refactored dependency to ili2c.jar
+
+iox-ili 1.11.2 (2015-12-09)
+-----------------------------
+- fixed IndexOutOfBoundsException in ISCICR()
+- ItfReader2: fixed ClassCastException
+
+iox-ili 1.11.1 (2015-11-23)
+-----------------------------
+- Iligml10Writer: fixed missing link objects (assocs)
+- ItfReader2: fixed "StraightSegment cannot be cast to ArcSegment" exception if ring end segment overlaps with ring start segment
+- ItfReader2: fixed "side location conflict"
+- ItfReader2: remove overlaps at nodes that are not start/end of line
+- ItfReader2: log queued errors at end of transfer (if not yet done)
+- ItfReader2: fixed overlap case, where otherSegment end is inside overlap buffer
+
+iox-ili 1.11.0 (2015-09-10)
+-----------------------------
+- Iligml10Writer: adjusted to approved eCH-0118-1.0
+
+iox-ili 1.10.6 (2015-09-04)
+-----------------------------
+- ItfReader2: fixed eye handling in Arc/Arc overlap remover
+
+iox-ili 1.10.5 (2015-08-14)
+-----------------------------
+- ItfReader2: Arc/Arc overlap remover added
+
+iox-ili 1.10.4 (2015-06-15)
+-----------------------------
+- ItfReader2: Arc/Straight overlap remover added
+
+iox-ili 1.10.3 (2015-06-15)
+-----------------------------
+- ItfWriter2 added
+- use CompoundCurveNoder to detect intersections
+
+iox-ili 1.10.2 (2015-06-03)
+-----------------------------
+- improved repository access logging
+- fixed NullPointerException if wrong/missing schemaLanguage in ilimodels.xml
+
+iox-ili 1.10.0 (2014-12-30)
+-----------------------------
+- added XTF24 BETA
+- removed XRF
+- fixed leading zero error in calc of MD5 
+- read also modelnames from XTF header
+
+iox-ili 1.9.0 (2013-11-29)
+-----------------------------
+- XtfWriter: don't trim attribute values
+
+iox-ili 1.8.0 (2013-04-12)
+-----------------------------
+- added XRF BETA
+
+iox-ili 1.7.1 (2012-11-20)
+-----------------------------
+- bug: ItfReader failed to read polyline
+
+iox-ili 1.7.0 (2012-11-15)
+-----------------------------
+- ItfWriter: improved error msg in case of trying to write non numeric values as a numbers
+- added generics
+- added annotations Deprecated, Override
+- API changes include minor incompatibilities
+
+iox-ili 1.6.9 (2012-10-26)
+-----------------------------
+- iox-api 1.0.2 (2012-10-26)
+
+iox-ili 1.6.8 (2012-08-31)
+-----------------------------
+- bug: XtfReader failed to skip element content of OIDType
+
+iox-ili 1.6.7 (2012-07-23)
+-----------------------------
+- bug: XtfWriter failed to write OIDType with XML-attribute
+
+iox-ili 1.6.6 (2012-06-28)
+-----------------------------
+- bug: ItfWriter didn't round numeric values
+- added DbUtility.getInt(), DbUtility.getDouble()
+
+iox-ili 1.6.5 (2012-06-06)
+-----------------------------
+- bug: write OIDSPACES
+
+iox-ili 1.6.4 (2012-05-01)
+-----------------------------
+- bug: tries to find model INTERLIS
+
+iox-ili 1.6.3 (2012-02-20)
+-----------------------------
+- MakeIliModelsXml: java.lang.NullPointerException if no existing ilimodels.xml
+
+iox-ili 1.6.2 (2011-12-22)
+-----------------------------
+- added resolver to customize repository access
+- ili2c-4.4.2
+
+iox-ili 1.6.1 (2011-09-05)
+-----------------------------
+- skip empty dependencies in ilimodels.xml
+- new MakeIliModelsXml that can update existing file and reads meta attributes (precursorVersion, tags, furtherInformation, furtherMetadata, Original, IDGeoIV, technicalContact)
+
+iox-ili 1.6.0 (2011-08-19)
+-----------------------------
+- switched from wstx to jre StaX
+
+iox-ili 1.5.5 (2011-04-14)
+-----------------------------
+- added XtfStartTransferEvent to better support XTF header
+- bug: Attribute URI missing in OIDSPACE
+
+iox-ili 1.5.4 (2011-01-26)
+-----------------------------
+- ili2c-4.3.4
+- java.lang.NoSuchMethodError: ch.interlis.ili2c.metamodel.Constant$Numeric.getValue()D
+- add java.io.Serializable to Iom_jObject
+
+iox-ili 1.5.3 (2010-12-02)
+-----------------------------
+- bug itf reader: skip space after 'CONT'
+
+iox-ili 1.5.2 (2010-11-16)
+-----------------------------
+- itf reader: skip/ignore missing 3rd value of a coord
+- renamed iox.jar to iox-ili.jar
+
+iox-ili 1.5.0 (2009-12-03)
+-----------------------------
+- initial public version

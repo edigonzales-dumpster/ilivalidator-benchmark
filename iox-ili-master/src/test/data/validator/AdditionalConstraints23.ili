@@ -1,0 +1,224 @@
+INTERLIS 2.3;
+
+CONTRACTED MODEL AdditionalConstraints23 AT "mailto:ceis@localhost" VERSION "2016-03-29" =
+	TOPIC Topic =
+		DOMAIN
+			Lkoord = COORD 480000.000 .. 850000.000 [INTERLIS.m],
+						   70000.000 .. 310000.000 [INTERLIS.m],
+						ROTATION 2 -> 1;
+			Hkoord = COORD 480000.000 .. 850000.000 [INTERLIS.m],
+						        70000.000 .. 310000.000 [INTERLIS.m],
+						              0.000 .. 5000.000 [INTERLIS.m];
+			enumerationOrdered = (null, eins, zwei, drei, mehr (vier)) ORDERED;
+			attrRef1 = TEXT*12;
+			
+		STRUCTURE StructA =
+		END StructA;
+		
+		STRUCTURE StructB =
+			Surface: SURFACE WITH (STRAIGHTS,ARCS) VERTEX Lkoord WITHOUT OVERLAPS > 0.001;
+		END StructB;
+		
+		CLASS ClassA =
+		  attr1 : TEXT*10;
+		  attr2 : 0 .. 100;
+		END ClassA;
+		
+		CLASS ClassC =
+			Numbers: BAG {1..*} OF StructA;
+		END ClassC;
+		
+		CLASS ClassB =
+			attr1 : 0..10;
+			attr2 : 0..10;
+		END ClassB;
+		
+		CLASS ClassD =
+			Numbers: BAG {1..*} OF StructB;
+			Art: (a, b, c);
+		END ClassD;
+		
+		CLASS ClassE =
+			attr3 : Hkoord;
+			attr4 : Hkoord;
+		END ClassE;
+		
+		CLASS ClassF =
+			attr1 : 0..10;
+			attr2 : 0..10;
+		END ClassF;
+		
+		CLASS ClassG =
+			subAttr : TEXT*10;
+		END ClassG;
+		
+		CLASS ClassH =
+			superAttr : TEXT*10;
+		END ClassH;
+		
+		CLASS ClassI =
+			Geometrie : MANDATORY SURFACE WITH (STRAIGHTS, ARCS) VERTEX Lkoord WITHOUT OVERLAPS > 0.050;
+		END ClassI;
+		
+		CLASS ClassJ =
+			Geometrie : MANDATORY AREA WITH (STRAIGHTS, ARCS) VERTEX Lkoord WITHOUT OVERLAPS > 0.050;
+		END ClassJ;
+		
+		CLASS ClassK =
+			attrK : TEXT*10;
+		END ClassK;
+		
+		CLASS ClassL =
+			attrL : TEXT*10;
+		END ClassL;
+		
+		ASSOCIATION k2l =
+		  roleK -- {0..*} ClassK;
+		  roleL -- {0..*} ClassL;
+		END k2l;
+		
+	END Topic;
+END AdditionalConstraints23.
+
+
+CONTRACTED MODEL AdditionalModelA AT "mailto:ceis@localhost" VERSION "2016-03-29" =
+	IMPORTS AdditionalConstraints23;
+	VIEW TOPIC AdditionalTopicA =
+		DEPENDS ON AdditionalConstraints23.Topic;
+		VIEW AdditionalClassA
+			PROJECTION OF AdditionalConstraints23.Topic.ClassA;
+			=
+			ALL OF ClassA;
+			UNIQUE attr1;
+		END AdditionalClassA;
+	END AdditionalTopicA;
+END AdditionalModelA.
+
+
+CONTRACTED MODEL AdditionalModelB AT "mailto:ceis@localhost" VERSION "2016-03-29" =
+	IMPORTS AdditionalConstraints23;
+	VIEW TOPIC AdditionalTopicB =
+		DEPENDS ON AdditionalConstraints23.Topic;
+		VIEW AdditionalClassB
+			PROJECTION OF AdditionalConstraints23.Topic.ClassG;
+			=
+			ALL OF ClassG;
+			EXISTENCE CONSTRAINT subAttr REQUIRED IN AdditionalConstraints23.Topic.ClassH : superAttr;
+		END AdditionalClassB;
+	END AdditionalTopicB;
+END AdditionalModelB.
+
+
+CONTRACTED MODEL AdditionalModelC AT "mailto:ceis@localhost" VERSION "2016-03-29" =
+	IMPORTS AdditionalConstraints23;
+	VIEW TOPIC AdditionalTopicC =
+		DEPENDS ON AdditionalConstraints23.Topic;
+		VIEW AdditionalClassC
+			PROJECTION OF AdditionalConstraints23.Topic.ClassB;
+			WHERE ClassB->attr1==5;
+			=
+			ALL OF ClassB;
+			MANDATORY CONSTRAINT attr1 == attr2;
+		END AdditionalClassC;
+	END AdditionalTopicC;
+END AdditionalModelC.
+
+
+CONTRACTED MODEL AdditionalModelD AT "mailto:ceis@localhost" VERSION "2016-03-29" =
+	IMPORTS AdditionalConstraints23;
+	VIEW TOPIC AdditionalTopicD =
+		DEPENDS ON AdditionalConstraints23.Topic;
+		VIEW AdditionalClassD
+			PROJECTION OF AdditionalConstraints23.Topic.ClassE;
+			=
+			ALL OF ClassE;
+			MANDATORY CONSTRAINT (attr3 != attr4);
+		END AdditionalClassD;
+	END AdditionalTopicD;
+END AdditionalModelD.
+
+
+CONTRACTED MODEL AdditionalModelE AT "mailto:ceis@localhost" VERSION "2016-03-29" =
+	IMPORTS AdditionalConstraints23;
+	VIEW TOPIC AdditionalTopicE =
+		DEPENDS ON AdditionalConstraints23.Topic;
+		VIEW AdditionalClassE
+			PROJECTION OF AdditionalConstraints23.Topic.ClassA;
+			=
+			ALL OF ClassA;
+			UNIQUE attr1, attr2;
+		END AdditionalClassE;
+	END AdditionalTopicE;
+END AdditionalModelE.
+
+
+CONTRACTED MODEL AdditionalModelF AT "mailto:ceis@localhost" VERSION "2016-03-29" =
+	IMPORTS AdditionalConstraints23;	
+	VIEW TOPIC AdditionalTopicF =
+		DEPENDS ON AdditionalConstraints23.Topic;
+		VIEW AdditionalClassF
+			PROJECTION OF AdditionalConstraints23.Topic.ClassC;
+			=
+			ALL OF ClassC;
+			SET CONSTRAINT INTERLIS.objectCount(Numbers) == 2;
+		END AdditionalClassF;
+	END AdditionalTopicF;
+END AdditionalModelF.
+
+
+CONTRACTED MODEL AdditionalModelG AT "mailto:ceis@localhost" VERSION "2016-03-29" =
+	IMPORTS AdditionalConstraints23;	
+	VIEW TOPIC AdditionalTopicG =
+		DEPENDS ON AdditionalConstraints23.Topic;
+		VIEW AdditionalClassG
+			PROJECTION OF AdditionalConstraints23.Topic.ClassF;
+			=
+			ALL OF ClassF;
+			CONSTRAINT >= 50%
+			attr1 >= attr2;
+		END AdditionalClassG;
+	END AdditionalTopicG;
+END AdditionalModelG.
+
+
+CONTRACTED MODEL AdditionalModelH AT "mailto:ceis@localhost" VERSION "2016-03-29" =
+  IMPORTS AdditionalConstraints23;
+  VIEW TOPIC AdditionalTopicH =
+  	DEPENDS ON AdditionalConstraints23.Topic;
+        VIEW AdditionalClassH
+   			PROJECTION OF AdditionalConstraints23.Topic.ClassI;
+    	=
+       ALL OF ClassI;
+    	SET CONSTRAINT INTERLIS.areAreas(ALL, UNDEFINED, >> Geometrie);
+    END AdditionalClassH;
+  END AdditionalTopicH;
+END AdditionalModelH.
+
+
+CONTRACTED MODEL AdditionalModelI AT "mailto:ceis@localhost" VERSION "2016-03-29" =
+  IMPORTS AdditionalConstraints23;
+  VIEW TOPIC AdditionalTopicI =
+  	DEPENDS ON AdditionalConstraints23.Topic;
+        VIEW AdditionalClassI
+   	PROJECTION OF AdditionalConstraints23.Topic.ClassD;
+    	=
+       ALL OF ClassD;
+		SET CONSTRAINT WHERE Art == #a : INTERLIS.areAreas(ALL, >> Numbers, >> AdditionalConstraints23.Topic.StructB->Surface);
+    END AdditionalClassI;
+  END AdditionalTopicI;
+END AdditionalModelI.
+
+CONTRACTED MODEL AdditionalModelK AT "mailto:ceis@localhost" VERSION "2016-03-29" =
+  IMPORTS AdditionalConstraints23;
+  VIEW TOPIC AdditionalTopicK =
+  	DEPENDS ON AdditionalConstraints23.Topic;
+    
+  	VIEW AdditionalAssocK2L
+   	PROJECTION OF AdditionalConstraints23.Topic.k2l;
+    	=
+       ALL OF k2l;
+       !!MANDATORY CONSTRAINT roleK->attrK<>roleL->attrL; !! requires fix in ili2c
+    END AdditionalAssocK2L;
+    
+  END AdditionalTopicK;
+END AdditionalModelK.
