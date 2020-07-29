@@ -338,21 +338,23 @@ public class Validator implements ch.interlis.iox.IoxValidator {
 			return;
 		}
 		if (event instanceof ch.interlis.iox.StartTransferEvent){
-			System.out.println("Start: " + System.currentTimeMillis());
+			//System.out.println("Start: " + System.currentTimeMillis());
 			errs.addEvent(errFact.logInfoMsg(rsrc.getString("validate.firstValidationPass")));
 			validateInconsistentIliAndXMLVersion(event);
-			System.out.println("After validateInconsistentIliAndXMLVersion: " + System.currentTimeMillis());
+			//System.out.println("After validateInconsistentIliAndXMLVersion: " + System.currentTimeMillis());
 			uniquenessOfBid.clear();
-			System.out.println("After uniquenessOfBid.clear(): " + System.currentTimeMillis());
+			//System.out.println("After uniquenessOfBid.clear(): " + System.currentTimeMillis());
 		} else if (event instanceof ch.interlis.iox.StartBasketEvent){
+			System.out.println(System.nanoTime() + ","+"start StartBasketEvent ("+currentBasketId+")");
 			StartBasketEvent startBasketEvent = ((ch.interlis.iox.StartBasketEvent) event);
 			currentBasketId = ((ch.interlis.iox.StartBasketEvent) event).getBid();
 			validateBasketEvent(startBasketEvent);
-			System.out.println("After validateBasketEven ("+currentBasketId+"): " + System.currentTimeMillis());
+			System.out.println(System.nanoTime() + ","+"end StartBasketEvent ("+currentBasketId+")");
 		}else if(event instanceof ch.interlis.iox.ObjectEvent){
 			IomObject iomObj=new ch.interlis.iom_j.Iom_jObject(((ch.interlis.iox.ObjectEvent)event).getIomObject());
 			try {
                 validateObject(iomObj,null,null);
+				System.out.println(System.nanoTime() + ","+iomObj.getobjecttag().toString());
 			} catch (IoxException e) {
 				errs.addEvent(errFact.logInfoMsg(rsrc.getString("validate.failedToValidateObject"), iomObj.toString()));
 			}catch(RuntimeException e) {

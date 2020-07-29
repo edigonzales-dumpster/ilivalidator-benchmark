@@ -18,5 +18,18 @@ time java -jar build/libs/ilivalidator-1.11.7-SNAPSHOT-all.jar ../254600.ITF 1> 
 time java -jar build/libs/ilivalidator-1.11.7-SNAPSHOT-all.jar  --skipPolygonBuilding ../254600.ITF 1> 254600_java_skipPolygonBuilding.log
 
 time ./ilivalidator --skipPolygonBuilding ../254600.ITF 1> 254600_native_skipPolygonBuilding.log
+
+
+
+
+
+time java -jar build/libs/ilivalidator-1.11.7-SNAPSHOT-all.jar  ../254900.itf 1> 254900_java.csv
+time ./ilivalidator ../254900.itf 1> 254900_native.csv
+
+
+time java -jar build/libs/ilivalidator-1.11.7-SNAPSHOT-all.jar  ../254600.itf 1> 254600_java.csv
+time ./ilivalidator ../254600.itf 1> 254600_native.csv
+
+
 ```
 
